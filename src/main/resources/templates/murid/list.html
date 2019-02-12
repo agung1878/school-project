@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      th:with="activeTab='murid'"
+      layout:decorate="~{layout}">
+    <body>
+        <section layout:fragment="pageHeader">
+            <div class="page-header page-header-light">
+                <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+                    <div class="d-flex">
+                        <div class="breadcrumb">
+                            <a href="index.html" class="breadcrumb-item"><i class="icon-magazine mr-2"></i> Murid</a>
+                            <span class="breadcrumb-item active">List</span>
+                        </div>
+
+                        <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section layout:fragment="content">
+            <!-- Basic table -->
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">List Murid</h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="reload"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="datatable-header">
+                    <div id="DataTables_Table_1_filter" class="dataTables_filter">
+                        <label><span>Filter:</span> 
+                            <input type="search" class="" placeholder="Type to filter..." aria-controls="DataTables_Table_1">
+                        </label></div>
+                    <div class="dt-buttons">
+                        <a th:href="@{/murid/form}">
+                            <button type="button" class="btn btn-primary btn-icon legitRipple">
+                                <i class="icon-plus2"></i>
+                                <div class="legitRipple-ripple"></div>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>NIS</th>
+                                <th>Nama</th>
+                                <th>Kelas</th>
+                                <th>No. Absen</th>
+                                <th>Jenis Kelamin</th>
+                                <th>Tanggal Lahir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="m : ${data.content}">
+                                <td th:text="${m.nis}">018372019</td>
+                                <td th:text="${m.nama}">Ucup SariZola</td>
+                                <td th:text="${m.kelas.namaKelas}">12 B</td>
+                                <td th:text="${m.noAbsen}">23</td>
+                                <td th:text="${m.jenisKelamin}">Laki - laki</td>
+                                <td th:text="${#dates.format(m.tglLahir, 'dd-MM-yyyy')}">20/12/1998</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <nav class="mb-3 twbs-content-visible-pages">
+                    <ul class="pagination-flat justify-content-center twbs-visible-pages pagination" sd:pagination="full">
+                        <!-- Pagination created by SpringDataDialect, this content is just for mockup -->
+                        <li class="page-item prev disabled"><a href="#" class="page-link">←</a></li>
+                        <li class="page-item active"><a href="#" class="page-link legitRipple">1</a></li>
+                        <li class="page-item"><a href="#" class="page-link legitRipple">2</a></li>
+                        <li class="page-item next"><a href="#" class="page-link legitRipple">→</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- /basic table -->
+        </section>
+    </body>
+</html>

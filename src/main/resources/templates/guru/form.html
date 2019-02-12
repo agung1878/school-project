@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      th:with="activeTab='Guru'"
+      layout:decorate="~{layout}">
+    <body>
+        <section layout:fragment="pageHeader">
+            <div class="page-header page-header-light">
+                <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+                    <div class="d-flex">
+                        <div class="breadcrumb">
+                            <a href="index.html" class="breadcrumb-item"><i class="icon-library2 mr-2"></i> Guru</a>
+                            <span class="breadcrumb-item active">Form</span>
+                        </div>
+
+                        <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section layout:fragment="content">
+            <!-- Form inputs -->
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title">Guru form inputs</h5>
+                    <div class="header-elements">
+                        <div class="list-icons">
+                            <a class="list-icons-item" data-action="collapse"></a>
+                            <a class="list-icons-item" data-action="reload"></a>
+                            <a class="list-icons-item" data-action="remove"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <form th:action="@{/guru/form}" method="post" th:object="${guru}">
+                        <input type="hidden" th:field="*{id}" />
+                        <fieldset class="mb-3">
+                            <div class="form-group row">
+                                <label class="col-form-label col-lg-2">NIP</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" th:field="*{nip}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-lg-2">Nama</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" th:field="*{nama}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-lg-2">Mata Pelajaran</label>
+                                <div class="col-lg-10">
+                                    <select class="form-control" th:field="*{mapel}">
+                                        <option value="opt1">Default select box</option>
+                                        <option th:each="x : ${listMapel}" th:value="${x.id}" th:text="${x.nama}">10 A</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-lg-2">Kelas</label>
+                                <div class="col-lg-10">
+                                    <select class="form-control" th:field="*{kelas}">
+                                        <option value="opt1">Default select box</option>
+                                        <option th:each="x : ${listKelas}" th:value="${x.id}" th:text="${x.namaKelas}">10 A</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary">Submit <i class="icon-paperplane ml-2"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /form inputs -->
+        </section>
+    </body>
+</html>
