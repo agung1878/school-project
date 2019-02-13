@@ -57,6 +57,7 @@
                                 <th>No. Absen</th>
                                 <th>Jenis Kelamin</th>
                                 <th>Tanggal Lahir</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -67,6 +68,10 @@
                                 <td th:text="${m.noAbsen}">23</td>
                                 <td th:text="${m.jenisKelamin}">Laki - laki</td>
                                 <td th:text="${#dates.format(m.tglLahir, 'dd-MM-yyyy')}">20/12/1998</td>
+                                <td>
+                                    <a th:href="@{/murid/form(id=${m.id})}"><button type="button" class="btn bg-blue-400 btn-icon rounded-round legitRipple"><i class="icon-pencil"></i></button></a>
+                                    <a th:href="@{/murid/delete(id=${m.id})}"><button type="button" class="btn bg-danger-400 btn-icon rounded-round legitRipple"><i class="icon-trash"></i></button></a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

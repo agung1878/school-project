@@ -28,7 +28,7 @@ public class JurusanController {
     @GetMapping("/list")
     public String showList(ModelMap mm, @PageableDefault Pageable pageable){
         
-        mm.addAttribute("data", jd.findAll(pageable));
+        mm.addAttribute("datas", jd.findAll(pageable));
         return "jurusan/list";
     }
     
@@ -36,7 +36,7 @@ public class JurusanController {
     public String showForm(ModelMap mm, @RequestParam (required = false) Optional<String> id){
         
         if (id.isPresent()){
-            jd.findById(id.get()).ifPresent(Jurusan -> mm.addAttribute("data", Jurusan));
+            jd.findById(id.get()).ifPresent(Jurusan -> mm.addAttribute("datas", Jurusan));
         } else {
             mm.addAttribute("jurusan", new Jurusan());
         }

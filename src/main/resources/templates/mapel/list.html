@@ -53,12 +53,17 @@
                             <tr>
                                 <th>Nama Mapel</th>
                                 <th>Kelas</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="m : ${data.content}">
                                 <td th:text="${m.nama}">IPA</td>
                                 <td th:text="${m.kelas.namaKelas}">12</td>
+                                <td>
+                                    <a th:href="@{/mapel/form(id=${m.id})}"><button type="button" class="btn bg-blue-400 btn-icon rounded-round legitRipple"><i class="icon-pencil"></i></button></a>
+                                    <a th:href="@{/mapel/delete(id=${m.id})}"><button type="button" class="btn bg-danger-400 btn-icon rounded-round legitRipple"><i class="icon-trash"></i></button></a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

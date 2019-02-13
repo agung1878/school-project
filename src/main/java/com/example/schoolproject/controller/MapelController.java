@@ -4,11 +4,14 @@ import com.example.schoolproject.dao.KelasDao;
 import com.example.schoolproject.dao.MapelDao;
 import com.example.schoolproject.entity.Mapel;
 import java.util.Optional;
+
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +55,20 @@ public class MapelController {
     public String prossesForm(ModelMap mm, Mapel data){
         mapelDao.save(data);
         
+        return "redirect:/mapel/list";
+    }
+
+    @GetMapping("/delete")
+    public String mapel(@RequestParam String id, ModelMap mm) {
+        if (StringUtils.hasText(id)) {
+            Optional<Mapel> op =  mapelDao.findById(id);
+            if (op.isPresent()) {
+                Mapel mapel = op.get();
+                if (mapel != null) {
+                    mapelDao.deleteById(id);
+                }
+            }
+        }
         return "redirect:/mapel/list";
     }
 }

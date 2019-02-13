@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,6 +51,20 @@ public class MuridController {
        
         md.save(data);
         
+        return "redirect:/murid/list";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam String id, ModelMap mm) {
+        if (StringUtils.hasText(id)) {
+            Optional<Murid> op = md.findById(id);
+            if (op.isPresent()) {
+                Murid murid = op.get();
+                if (murid != null) {
+                    md.deleteById(id);
+                }
+            }
+        }
         return "redirect:/murid/list";
     }
 }
