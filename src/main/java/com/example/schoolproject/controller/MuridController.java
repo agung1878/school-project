@@ -2,7 +2,7 @@ package com.example.schoolproject.controller;
 
 import com.example.schoolproject.dao.KelasDao;
 import com.example.schoolproject.dao.MuridDao;
-import com.example.schoolproject.entity.Murid;
+import com.example.schoolproject.entity.UserMurid;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -39,7 +39,7 @@ public class MuridController {
         if (id.isPresent()) {
             md.findById(id.get()).ifPresent(Murid -> mm.addAttribute("data", Murid));
         } else {
-            mm.addAttribute("murid", new Murid());
+            mm.addAttribute("murid", new UserMurid());
         }
        
         mm.addAttribute("listKelas", kd.findAll());
@@ -47,7 +47,7 @@ public class MuridController {
     }
     
     @PostMapping("/form")
-    public String prosesForm(ModelMap mm, Murid data) {
+    public String prosesForm(ModelMap mm, UserMurid data) {
        
         md.save(data);
         

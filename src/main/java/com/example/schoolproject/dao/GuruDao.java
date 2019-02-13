@@ -5,13 +5,13 @@
  */
 package com.example.schoolproject.dao;
 
-import com.example.schoolproject.entity.Guru;
+import com.example.schoolproject.entity.UserGuru;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
  *
  * @author agung
  */
-public interface GuruDao extends PagingAndSortingRepository<Guru, String>{
+public interface GuruDao extends PagingAndSortingRepository<UserGuru, String>{
     
 }
