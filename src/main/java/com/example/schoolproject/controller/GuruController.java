@@ -3,7 +3,7 @@ package com.example.schoolproject.controller;
 import com.example.schoolproject.dao.GuruDao;
 import com.example.schoolproject.dao.KelasDao;
 import com.example.schoolproject.dao.MapelDao;
-import com.example.schoolproject.entity.Guru;
+import com.example.schoolproject.entity.UserGuru;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -45,7 +45,7 @@ public class GuruController {
         if(id.isPresent()){
             gd.findById(id.get()).ifPresent(Guru -> mm.addAttribute("data", Guru));
         } else {
-            mm.addAttribute("guru", new Guru());
+            mm.addAttribute("guru", new UserGuru());
         }
         
         mm.addAttribute("listKelas", KelasDao.findAll());
@@ -54,7 +54,7 @@ public class GuruController {
     }
     
     @PostMapping("/form")
-    public String prossesForm(ModelMap mm, Guru data){
+    public String prossesForm(ModelMap mm, UserGuru data){
     
         gd.save(data);
         
