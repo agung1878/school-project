@@ -57,10 +57,10 @@ public class MuridController {
     @GetMapping("/delete")
     public String delete(@RequestParam String id, ModelMap mm) {
         if (StringUtils.hasText(id)) {
-            Optional<Murid> op = md.findById(id);
+            Optional<UserMurid> op = md.findById(id);
             if (op.isPresent()) {
-                Murid murid = op.get();
-                if (murid != null) {
+                UserMurid um = op.get();
+                if (um != null) {
                     md.deleteById(id);
                 }
             }
